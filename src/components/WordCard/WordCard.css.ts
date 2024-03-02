@@ -2,7 +2,7 @@ import { blue, green, red, yellow } from "@radix-ui/colors";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const wrapperStyles = style({
-  maxWidth: 300,
+  maxWidth: 450,
   margin: "0 auto",
   marginTop: 150,
 });
@@ -21,6 +21,27 @@ export const wordStyles = style({
   borderRadius: 10,
   border: `1px solid ${blue.blue7}`,
   padding: 20,
+  height: 75,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+});
+
+export const emojiStyles = style({
+  display: "block",
+  fontSize: 18,
+  marginRight: 5,
+  backgroundColor: blue.blue7,
+  padding: 5,
+  borderRadius: 5,
+  width: 30,
+  height: 30,
+});
+
+export const answerStyles = style({
+  color: blue.blue10,
+  display: "flex",
+  alignItems: "center",
 });
 
 export const buttonsStyles = style({

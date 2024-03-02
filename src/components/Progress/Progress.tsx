@@ -4,10 +4,15 @@ import {
   wrapperStyles,
 } from "./Progress.css";
 
-export const Progress = () => {
+type ProgressProps = {
+  total: number;
+  learned: number;
+};
+
+export const Progress = ({ total = 0, learned = 0 }: ProgressProps) => {
   return (
     <div className={wrapperStyles}>
-      You learned 367 out of 1000 words
+      You learned {learned} out of {total} words
       <div className={progressBarWrapperStyles}>
         <div className={progressBarStyles}></div>
       </div>

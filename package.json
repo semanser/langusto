@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@radix-ui/colors": "^3.0.0",
+    "@uidotdev/usehooks": "^2.4.1",
     "@vanilla-extract/css": "^1.14.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
