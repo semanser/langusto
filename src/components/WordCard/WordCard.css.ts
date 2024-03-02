@@ -71,17 +71,6 @@ export const buttonVariant = styleVariants({
       },
     },
   ],
-  Maybe: [
-    buttonBase,
-    {
-      backgroundColor: yellow.yellow5,
-      color: yellow.yellow11,
-
-      ":hover": {
-        backgroundColor: yellow.yellow6,
-      },
-    },
-  ],
   No: [
     buttonBase,
     {

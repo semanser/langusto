@@ -21,7 +21,7 @@ export const progressBarWrapperStyles = style({
 
 export const progressBarStyles = style({
   backgroundColor: green.green8,
-  width: "30%",
+  width: sizeVar,
   height: "100%",
   borderRadius: 3,
 });

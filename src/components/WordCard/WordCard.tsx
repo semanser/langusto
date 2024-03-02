@@ -1,3 +1,4 @@
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { useState } from "react";
 
 import {
@@ -19,23 +20,31 @@ export type Word = {
 
 type WordCardProps = {
   word: Word;
+  generateNewWord: () => void;
 };
 
-type Answer = "yes" | "no" | "maybe";
+type Answer = "yes" | "no";
 
-export const WordCard = ({ word }: WordCardProps) => {
+export const WordCard = ({ word, generateNewWord }: WordCardProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Answer>();
+  const [learned, saveLearned] = useLocalStorage<Word[]>("learned-words", []);
 
-  const handleAnswer = (anwer: "yes" | "no" | "maybe") => {
-    setSelectedAnswer(anwer);
+  const handleAnswer = (answer: "yes" | "no") => {
+    if (answer === selectedAnswer && answer === "yes") {
+      saveLearned([...learned, word]);
 
-    if (anwer === "yes") {
-      console.log("Yes");
-    } else if (anwer === "no") {
-      console.log("No");
-    } else {
-      console.log("Maybe");
+      generateNewWord();
+      setSelectedAnswer(undefined);
+      return;
     }
+
+    if (answer === selectedAnswer && answer === "no") {
+      generateNewWord();
+      setSelectedAnswer(undefined);
+      return;
+    }
+
+    setSelectedAnswer(answer);
   };
 
   return (
@@ -57,12 +66,6 @@ export const WordCard = ({ word }: WordCardProps) => {
           onClick={() => handleAnswer("yes")}
         >
           {selectedAnswer === "yes" ? "Confirm" : "Yes"}
-        </button>
-        <button
-          className={buttonVariant.Maybe}
-          onClick={() => handleAnswer("maybe")}
-        >
-          {selectedAnswer === "maybe" ? "Confirm" : "Maybe"}
         </button>
         <button className={buttonVariant.No} onClick={() => handleAnswer("no")}>
           {selectedAnswer === "no" ? "Confirm" : "No"}
