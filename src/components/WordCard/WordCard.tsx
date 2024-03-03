@@ -13,13 +13,13 @@ import {
 
 export type Word = {
   word: string;
-  complexity: number;
+  l: number;
   emoji: string;
   translation: string;
 };
 
 type WordCardProps = {
-  word: Word;
+  word?: Word;
   generateNewWord: () => void;
 };
 
@@ -30,6 +30,8 @@ export const WordCard = ({ word, generateNewWord }: WordCardProps) => {
   const [learned, saveLearned] = useLocalStorage<Word[]>("learned-words", []);
 
   const handleAnswer = (answer: "yes" | "no") => {
+    if (!word) return;
+
     if (answer === selectedAnswer && answer === "yes") {
       saveLearned([...learned, word]);
 
@@ -46,6 +48,10 @@ export const WordCard = ({ word, generateNewWord }: WordCardProps) => {
 
     setSelectedAnswer(answer);
   };
+
+  if (!word) {
+    return null;
+  }
 
   return (
     <div className={wrapperStyles}>

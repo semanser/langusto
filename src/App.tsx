@@ -1,17 +1,16 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { Progress } from "./components/Progress/Progress";
 import { Word, WordCard } from "./components/WordCard/WordCard";
 import "./font.css";
 import "./global.css";
-import { words } from "./languages/spanish";
+import { words } from "./languages/spanish.json";
 
 function App() {
   const [learned] = useLocalStorage<Word[]>("learned-words", []);
-  const [currentWord, setCurrentWord] = useState<Word>(
-    words[Math.floor(Math.random() * words.length)],
-  );
+  const [currentLevel, setCurrentLevel] = useLocalStorage("current-level", 1);
+  const [currentWord, setCurrentWord] = useState<Word>();
   const [notLearned, setNotLearned] = useState(words);
 
   useEffect(() => {
@@ -19,13 +18,38 @@ function App() {
       (word) => !learned.find((w) => w.word === word.word),
     );
     setNotLearned(newNotLearned);
-  }, [learned]);
+  }, [learned.length]);
 
-  const generateCurrentWord = () => {
+  const generateCurrentWord = useCallback(() => {
+    let level = currentLevel;
+
+    const wordsOnLevel = notLearned.filter((word) => word.l === currentLevel);
+
+    if ((wordsOnLevel.length = 0)) {
+      level = currentLevel + 1;
+      setCurrentLevel(level);
+    }
+
+    // Depending on the level, we will generate the next word
+    //
+    // 80% of the time, the next word will be from the level or below
+    let notLearnedOnLevel: Word[] = [];
+
+    if (Math.random() < 0.8) {
+      notLearnedOnLevel = notLearned.filter((word) => word.l <= level);
+    } else {
+      notLearnedOnLevel = notLearned.filter((word) => word.l > level);
+    }
+
     const newCurrentWord =
-      notLearned[Math.floor(Math.random() * notLearned.length)];
+      notLearnedOnLevel[Math.floor(Math.random() * notLearnedOnLevel.length)];
+
     setCurrentWord(newCurrentWord);
-  };
+  }, [currentLevel, notLearned, setCurrentLevel]);
+
+  useEffect(() => {
+    generateCurrentWord();
+  }, []);
 
   return (
     <>

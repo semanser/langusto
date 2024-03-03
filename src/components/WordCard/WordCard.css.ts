@@ -1,4 +1,4 @@
-import { blue, green, red, yellow } from "@radix-ui/colors";
+import { blue, green, red } from "@radix-ui/colors";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const wrapperStyles = style({
@@ -65,6 +65,7 @@ export const buttonVariant = styleVariants({
     {
       backgroundColor: green.green5,
       color: green.green11,
+      border: `1px solid ${green.green6}`,
 
       ":hover": {
         backgroundColor: green.green6,
@@ -76,6 +77,8 @@ export const buttonVariant = styleVariants({
     {
       backgroundColor: red.red5,
       color: red.red11,
+      border: `1px solid ${red.red6}`,
+
       ":hover": {
         backgroundColor: red.red6,
       },
