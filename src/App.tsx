@@ -7,11 +7,13 @@ import { Word, WordCard } from "./components/WordCard/WordCard";
 import "./font.css";
 import "./global.css";
 import { words } from "./languages.json";
+import { Language } from "./utils";
 
 const MAX_LEARNING_QUEUE = 7;
 
 function App() {
-  const [learned] = useLocalStorage<number[]>("learned-words", []);
+  const [studyLang] = useLocalStorage<Language>("study-lang", "es");
+  const [learned] = useLocalStorage<number[]>("learned-words-" + studyLang, []);
   const [currentLevel, setCurrentLevel] = useLocalStorage("current-level", 1);
 
   const [currentWord, setCurrentWord] = useState<Word>();

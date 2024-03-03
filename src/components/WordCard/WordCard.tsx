@@ -31,8 +31,11 @@ type Answer = "yes" | "no";
 
 export const WordCard = ({ word, onAnswer }: WordCardProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Answer>();
-  const [learned, saveLearned] = useLocalStorage<Word[]>("learned-words", []);
   const [studyLang] = useLocalStorage<Language>("study-lang", "es");
+  const [learned, saveLearned] = useLocalStorage<Word[]>(
+    "learned-words-" + studyLang,
+    [],
+  );
   const [baseLang] = useLocalStorage<Language>("base-lang", "en");
 
   useKeyPressEvent("1", () => handleAnswer("yes"));
