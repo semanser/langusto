@@ -1,5 +1,6 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useState } from "react";
+import { useKeyPressEvent } from "react-use";
 
 import {
   answerStyles,
@@ -28,6 +29,9 @@ type Answer = "yes" | "no";
 export const WordCard = ({ word, generateNewWord }: WordCardProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Answer>();
   const [learned, saveLearned] = useLocalStorage<Word[]>("learned-words", []);
+
+  useKeyPressEvent("1", () => handleAnswer("yes"));
+  useKeyPressEvent("2", () => handleAnswer("no"));
 
   const handleAnswer = (answer: "yes" | "no") => {
     if (!word) return;
@@ -71,10 +75,10 @@ export const WordCard = ({ word, generateNewWord }: WordCardProps) => {
           className={buttonVariant.Yes}
           onClick={() => handleAnswer("yes")}
         >
-          {selectedAnswer === "yes" ? "Confirm" : "Yes"}
+          {selectedAnswer === "yes" ? "Confirm(1)" : "Yes(1)"}
         </button>
         <button className={buttonVariant.No} onClick={() => handleAnswer("no")}>
-          {selectedAnswer === "no" ? "Confirm" : "No"}
+          {selectedAnswer === "no" ? "Confirm(2)" : "No(2)"}
         </button>
       </div>
     </div>

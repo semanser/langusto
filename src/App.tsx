@@ -11,21 +11,16 @@ function App() {
   const [learned] = useLocalStorage<Word[]>("learned-words", []);
   const [currentLevel, setCurrentLevel] = useLocalStorage("current-level", 1);
   const [currentWord, setCurrentWord] = useState<Word>();
-  const [notLearned, setNotLearned] = useState(words);
-
-  useEffect(() => {
-    const newNotLearned = words.filter(
-      (word) => !learned.find((w) => w.word === word.word),
-    );
-    setNotLearned(newNotLearned);
-  }, [learned.length]);
 
   const generateCurrentWord = useCallback(() => {
     let level = currentLevel;
+    const notLearned = words.filter(
+      (word) => !learned.find((w) => w.word === word.word),
+    );
 
     const wordsOnLevel = notLearned.filter((word) => word.l === currentLevel);
 
-    if ((wordsOnLevel.length = 0)) {
+    if (wordsOnLevel.length === 0) {
       level = currentLevel + 1;
       setCurrentLevel(level);
     }
@@ -38,14 +33,14 @@ function App() {
     if (Math.random() < 0.8) {
       notLearnedOnLevel = notLearned.filter((word) => word.l <= level);
     } else {
-      notLearnedOnLevel = notLearned.filter((word) => word.l > level);
+      notLearnedOnLevel = notLearned.filter((word) => word.l >= level);
     }
 
     const newCurrentWord =
       notLearnedOnLevel[Math.floor(Math.random() * notLearnedOnLevel.length)];
 
     setCurrentWord(newCurrentWord);
-  }, [currentLevel, notLearned, setCurrentLevel]);
+  }, [currentLevel, setCurrentLevel, learned]);
 
   useEffect(() => {
     generateCurrentWord();

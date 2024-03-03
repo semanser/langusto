@@ -39,12 +39,6 @@
       "translation": "to be (temporary)"
     },
     {
-      "word": "tener",
-      "l": 3,
-      "emoji": "✋",
-      "translation": "to have"
-    },
-    {
       "word": "le",
       "l": 1,
       "emoji": "👂",
@@ -54,7 +48,6 @@
     { "word": "todo", "l": 2, "emoji": "🔄", "translation": "all" },
     { "word": "pero", "l": 2, "emoji": "🤔", "translation": "but" },
     { "word": "más", "l": 2, "emoji": "➕", "translation": "more" },
-    { "word": "hacer", "l": 3, "emoji": "🛠️", "translation": "to do" },
     { "word": "o", "l": 1, "emoji": "🆗", "translation": "or" },
     {
       "word": "poder",
@@ -151,12 +144,6 @@
       "translation": "to arrive"
     },
     {
-      "word": "pasar",
-      "l": 2,
-      "emoji": "🔄",
-      "translation": "to pass"
-    },
-    {
       "word": "tanto",
       "l": 2,
       "emoji": "👌",
@@ -209,49 +196,23 @@
       "translation": "to do/make"
     },
     { "word": "ver", "l": 2, "emoji": "👀", "translation": "to see" },
-    { "word": "vez", "l": 1, "emoji": "🔄", "translation": "time" },
     {
       "word": "trabajar",
       "l": 3,
       "emoji": "👨‍💼",
       "translation": "to work"
     },
+    { "word": "solo", "l": 2, "emoji": "🚶‍♂️", "translation": "alone" },
     { "word": "fin", "l": 1, "emoji": "🏁", "translation": "end" },
     { "word": "año", "l": 2, "emoji": "📅", "translation": "year" },
-    {
-      "word": "venir",
-      "l": 2,
-      "emoji": "🚶‍♂️",
-      "translation": "to come"
-    },
-    { "word": "solo", "l": 2, "emoji": "🚶‍♂️", "translation": "alone" },
     {
       "word": "pasar",
       "l": 2,
       "emoji": "🔄",
       "translation": "to pass"
     },
-    { "word": "fin", "l": 1, "emoji": "🏁", "translation": "end" },
-    { "word": "año", "l": 2, "emoji": "📅", "translation": "year" },
-    {
-      "word": "venir",
-      "l": 2,
-      "emoji": "🚶‍♂️",
-      "translation": "to come"
-    },
-    { "word": "solo", "l": 2, "emoji": "🚶‍♂️", "translation": "alone" },
-    {
-      "word": "pasar",
-      "l": 2,
-      "emoji": "🔄",
-      "translation": "to pass"
-    },
-    { "word": "fin", "l": 1, "emoji": "🏁", "translation": "end" },
     { "word": "niño", "l": 2, "emoji": "🧒", "translation": "child" },
     { "word": "cosa", "l": 2, "emoji": "⚙️", "translation": "thing" },
-    { "word": "parte", "l": 2, "emoji": "➡️", "translation": "part" },
-    { "word": "mundo", "l": 2, "emoji": "🌎", "translation": "world" },
-    { "word": "hombre", "l": 2, "emoji": "👨", "translation": "man" },
     { "word": "mujer", "l": 2, "emoji": "👩", "translation": "woman" },
     { "word": "niña", "l": 2, "emoji": "👧", "translation": "girl" },
     { "word": "pueblo", "l": 2, "emoji": "🏘️", "translation": "town" },
@@ -1318,12 +1279,6 @@
       "translation": "to lose"
     },
     {
-      "word": "encontrar",
-      "l": 4,
-      "emoji": "🔍",
-      "translation": "to find"
-    },
-    {
       "word": "buscar",
       "l": 3,
       "emoji": "🔍",
@@ -2062,12 +2017,6 @@
       "translation": "to evolve"
     },
     {
-      "word": "trabajar",
-      "l": 3,
-      "emoji": "👨‍💼",
-      "translation": "to work"
-    },
-    {
       "word": "laborar",
       "l": 3,
       "emoji": "👨‍🔬",
@@ -2544,12 +2493,6 @@
       "l": 3,
       "emoji": "💬",
       "translation": "to comment"
-    },
-    {
-      "word": "publicar",
-      "l": 3,
-      "emoji": "📝",
-      "translation": "to post"
     },
     {
       "word": "actualizar",
