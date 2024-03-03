@@ -4,11 +4,11 @@ import { createVar, style } from "@vanilla-extract/css";
 export const sizeVar = createVar();
 
 export const wrapperStyles = style({
-  maxWidth: 400,
   margin: "0 auto",
-  marginTop: 40,
+  marginTop: 120,
   fontSize: 14,
   color: gray.gray10,
+  textAlign: "center",
 });
 
 export const progressBarWrapperStyles = style({

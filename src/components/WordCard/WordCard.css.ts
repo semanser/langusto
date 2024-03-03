@@ -2,7 +2,6 @@ import { blue, green, red } from "@radix-ui/colors";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const wrapperStyles = style({
-  maxWidth: 450,
   margin: "0 auto",
   marginTop: 150,
 });

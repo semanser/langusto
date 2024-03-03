@@ -1,6 +1,7 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useCallback, useEffect, useState } from "react";
 
+import { wrapperStyles } from "./App.css";
 import { LangSelector } from "./components/LangSelector/LangSelector";
 import { Progress } from "./components/Progress/Progress";
 import { Word, WordCard } from "./components/WordCard/WordCard";
@@ -84,11 +85,11 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className={wrapperStyles}>
       <LangSelector />
       <WordCard word={currentWord} onAnswer={handleAnswer} />
       <Progress total={words.length} learned={learned.length} />
-    </>
+    </div>
   );
 }
 

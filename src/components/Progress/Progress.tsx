@@ -20,7 +20,7 @@ export const Progress = ({ total = 0, learned = 0 }: ProgressProps) => {
 
   return (
     <div className={wrapperStyles}>
-      You learned {learned} out of {total} words in{" "}
+      You learned {learned} / {total} words in{" "}
       <b>{convertLangCode(studyLang)}</b>
       <div className={progressBarWrapperStyles}>
         <div

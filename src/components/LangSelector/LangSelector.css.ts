@@ -4,7 +4,6 @@ import { createVar, style } from "@vanilla-extract/css";
 export const sizeVar = createVar();
 
 export const wrapperStyles = style({
-  maxWidth: 450,
   margin: "0 auto",
   marginTop: 20,
   fontSize: 14,
