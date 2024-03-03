@@ -2,6 +2,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { useState } from "react";
 import { useKeyPressEvent } from "react-use";
 
+import { Language } from "../../utils";
 import {
   answerStyles,
   buttonVariant,
@@ -13,10 +14,12 @@ import {
 } from "./WordCard.css";
 
 export type Word = {
-  word: string;
-  l: number;
+  id: number;
+  level: number;
   emoji: string;
-  translation: string;
+  lang: {
+    [key in Language]: string;
+  };
 };
 
 type WordCardProps = {
@@ -29,6 +32,8 @@ type Answer = "yes" | "no";
 export const WordCard = ({ word, onAnswer }: WordCardProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Answer>();
   const [learned, saveLearned] = useLocalStorage<Word[]>("learned-words", []);
+  const [studyLang] = useLocalStorage<Language>("study-lang", "es");
+  const [baseLang] = useLocalStorage<Language>("base-lang", "en");
 
   useKeyPressEvent("1", () => handleAnswer("yes"));
   useKeyPressEvent("2", () => handleAnswer("no"));
@@ -61,11 +66,11 @@ export const WordCard = ({ word, onAnswer }: WordCardProps) => {
     <div className={wrapperStyles}>
       <div className={questionStyles}>Do you know this word?</div>
       <div className={wordStyles}>
-        {word.word}
+        {word.lang[studyLang]}
         {selectedAnswer && (
           <span className={answerStyles}>
             <span className={emojiStyles}>{word.emoji}</span>
-            {word.translation}
+            {word.lang[baseLang]}
           </span>
         )}
       </div>

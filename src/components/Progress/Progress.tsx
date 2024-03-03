@@ -1,5 +1,7 @@
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
+import { Language, convertLangCode } from "../../utils";
 import {
   progressBarStyles,
   progressBarWrapperStyles,
@@ -14,10 +16,12 @@ type ProgressProps = {
 
 export const Progress = ({ total = 0, learned = 0 }: ProgressProps) => {
   const progress = (learned / total) * 100;
+  const [studyLang] = useLocalStorage<Language>("study-lang", "es");
 
   return (
     <div className={wrapperStyles}>
-      You learned {learned} out of {total} words
+      You learned {learned} out of {total} words in{" "}
+      <b>{convertLangCode(studyLang)}</b>
       <div className={progressBarWrapperStyles}>
         <div
           className={progressBarStyles}

@@ -1,17 +1,19 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useCallback, useEffect, useState } from "react";
 
+import { LangSelector } from "./components/LangSelector/LangSelector";
 import { Progress } from "./components/Progress/Progress";
 import { Word, WordCard } from "./components/WordCard/WordCard";
 import "./font.css";
 import "./global.css";
-import { words } from "./languages/spanish.json";
+import { words } from "./languages.json";
 
 const MAX_LEARNING_QUEUE = 7;
 
 function App() {
-  const [learned] = useLocalStorage<Word[]>("learned-words", []);
+  const [learned] = useLocalStorage<number[]>("learned-words", []);
   const [currentLevel, setCurrentLevel] = useLocalStorage("current-level", 1);
+
   const [currentWord, setCurrentWord] = useState<Word>();
 
   const [wordsToPractice, setWordsToPractice] = useState<Word[]>([]);
@@ -19,10 +21,12 @@ function App() {
   const generateCurrentWord = useCallback(() => {
     let level = currentLevel;
     const notLearned = words.filter(
-      (word) => !learned.find((w) => w.word === word.word),
+      (word) => !learned.find((w) => w === word.id),
     );
 
-    const wordsOnLevel = notLearned.filter((word) => word.l === currentLevel);
+    const wordsOnLevel = notLearned.filter(
+      (word) => word.level === currentLevel,
+    );
 
     if (wordsOnLevel.length === 0) {
       level = currentLevel + 1;
@@ -35,9 +39,9 @@ function App() {
     let notLearnedOnLevel: Word[] = [];
 
     if (Math.random() < 0.8) {
-      notLearnedOnLevel = notLearned.filter((word) => word.l <= level);
+      notLearnedOnLevel = notLearned.filter((word) => word.level <= level);
     } else {
-      notLearnedOnLevel = notLearned.filter((word) => word.l >= level);
+      notLearnedOnLevel = notLearned.filter((word) => word.level >= level);
     }
 
     let newCurrentWord;
@@ -65,7 +69,7 @@ function App() {
       // If the word is in the wordsToPractice, we remove it
 
       const newWordsToPractice = wordsToPractice.filter(
-        (w) => w.word !== word.word,
+        (w) => w.id !== word.id,
       );
       setWordsToPractice(newWordsToPractice);
     }
@@ -79,6 +83,7 @@ function App() {
 
   return (
     <>
+      <LangSelector />
       <WordCard word={currentWord} onAnswer={handleAnswer} />
       <Progress total={words.length} learned={learned.length} />
     </>
