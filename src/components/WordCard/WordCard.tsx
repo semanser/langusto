@@ -21,12 +21,12 @@ export type Word = {
 
 type WordCardProps = {
   word?: Word;
-  generateNewWord: () => void;
+  onAnswer?: (word: Word, answer: "yes" | "no") => void;
 };
 
 type Answer = "yes" | "no";
 
-export const WordCard = ({ word, generateNewWord }: WordCardProps) => {
+export const WordCard = ({ word, onAnswer }: WordCardProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Answer>();
   const [learned, saveLearned] = useLocalStorage<Word[]>("learned-words", []);
 
@@ -39,14 +39,14 @@ export const WordCard = ({ word, generateNewWord }: WordCardProps) => {
     if (answer === selectedAnswer && answer === "yes") {
       saveLearned([...learned, word]);
 
-      generateNewWord();
       setSelectedAnswer(undefined);
+      onAnswer?.(word, "yes");
       return;
     }
 
     if (answer === selectedAnswer && answer === "no") {
-      generateNewWord();
       setSelectedAnswer(undefined);
+      onAnswer?.(word, "no");
       return;
     }
 

@@ -7,10 +7,14 @@ import "./font.css";
 import "./global.css";
 import { words } from "./languages/spanish.json";
 
+const MAX_LEARNING_QUEUE = 7;
+
 function App() {
   const [learned] = useLocalStorage<Word[]>("learned-words", []);
   const [currentLevel, setCurrentLevel] = useLocalStorage("current-level", 1);
   const [currentWord, setCurrentWord] = useState<Word>();
+
+  const [wordsToPractice, setWordsToPractice] = useState<Word[]>([]);
 
   const generateCurrentWord = useCallback(() => {
     let level = currentLevel;
@@ -36,11 +40,38 @@ function App() {
       notLearnedOnLevel = notLearned.filter((word) => word.l >= level);
     }
 
-    const newCurrentWord =
-      notLearnedOnLevel[Math.floor(Math.random() * notLearnedOnLevel.length)];
+    let newCurrentWord;
+
+    if (wordsToPractice.length === MAX_LEARNING_QUEUE) {
+      // Get a word from the wordsToPractice
+      newCurrentWord =
+        wordsToPractice[Math.floor(Math.random() * wordsToPractice.length)];
+    } else {
+      newCurrentWord =
+        notLearnedOnLevel[Math.floor(Math.random() * notLearnedOnLevel.length)];
+    }
 
     setCurrentWord(newCurrentWord);
   }, [currentLevel, setCurrentLevel, learned]);
+
+  const handleAnswer = (word: Word, answer: "yes" | "no") => {
+    if (answer === "no") {
+      if (wordsToPractice.length < MAX_LEARNING_QUEUE) {
+        setWordsToPractice([...wordsToPractice, word]);
+      }
+    }
+
+    if (answer === "yes") {
+      // If the word is in the wordsToPractice, we remove it
+
+      const newWordsToPractice = wordsToPractice.filter(
+        (w) => w.word !== word.word,
+      );
+      setWordsToPractice(newWordsToPractice);
+    }
+
+    generateCurrentWord();
+  };
 
   useEffect(() => {
     generateCurrentWord();
@@ -48,7 +79,7 @@ function App() {
 
   return (
     <>
-      <WordCard word={currentWord} generateNewWord={generateCurrentWord} />
+      <WordCard word={currentWord} onAnswer={handleAnswer} />
       <Progress total={words.length} learned={learned.length} />
     </>
   );
