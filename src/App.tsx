@@ -1,7 +1,12 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { useCallback, useEffect, useState } from "react";
 
-import { logoStyles, wrapperStyles } from "./App.css";
+import {
+  githubLinkStyles,
+  logoStyles,
+  sourceCodeStyles,
+  wrapperStyles,
+} from "./App.css";
 import { LangSelector } from "./components/LangSelector/LangSelector";
 import { Progress } from "./components/Progress/Progress";
 import { Word, WordCard } from "./components/WordCard/WordCard";
@@ -85,12 +90,25 @@ function App() {
   }, []);
 
   return (
-    <div className={wrapperStyles}>
-      <img src="logo.png" alt="Logo" className={logoStyles} />
-      <LangSelector />
-      <WordCard word={currentWord} onAnswer={handleAnswer} />
-      <Progress total={words.length} learned={learned.length} />
-    </div>
+    <>
+      <div className={sourceCodeStyles}>
+        <a
+          href="https://github.com/semanser/langusto"
+          className={githubLinkStyles}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="github-mark.svg" />
+          Source code
+        </a>
+      </div>
+      <div className={wrapperStyles}>
+        <img src="logo.png" alt="Logo" className={logoStyles} />
+        <LangSelector />
+        <WordCard word={currentWord} onAnswer={handleAnswer} />
+        <Progress total={words.length} learned={learned.length} />
+      </div>
+    </>
   );
 }
 
