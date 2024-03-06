@@ -11,11 +11,11 @@ export const triggerStyles = style({
 
 export const dropdownMenuContentStyles = style({
   minWidth: 220,
-  backgroundColor: gray.gray3,
+  backgroundColor: gray.gray2,
   border: `1px solid ${gray.gray4}`,
   borderRadius: 6,
   padding: 3,
-  boxShadow: `0 0 10px 2px #12121187`,
+  boxShadow: `0 0 10px 2px #12121110`,
 });
 
 export const dropdownMenuSubContentStyles = dropdownMenuContentStyles;

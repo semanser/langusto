@@ -14,7 +14,7 @@ export const wrapperStyles = style({
 export const selectLanguageStyles = style({
   border: `1px solid transparent`,
   fontSize: 13,
-  color: gray.gray10,
+  color: gray.gray12,
   padding: 10,
   borderRadius: 6,
   backgroundColor: "transparent",
@@ -23,7 +23,5 @@ export const selectLanguageStyles = style({
 
   ":hover": {
     backgroundColor: gray.gray2,
-    border: `1px solid ${gray.gray3}`,
-    color: gray.gray11,
   },
 });

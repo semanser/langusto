@@ -6,3 +6,9 @@ export const wrapperStyles = style({
   margin: "0 auto",
   marginTop: 180,
 });
+
+export const logoStyles = style({
+  display: "block",
+  maxWidth: 100,
+  margin: "0 auto",
+});
