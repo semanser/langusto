@@ -54,14 +54,14 @@ export const LangSelector = () => {
 
   return (
     <div className={wrapperStyles}>
-      <Dropdown content={studyDropdownContent}>
-        <div className={selectLanguageStyles}>
-          Language you learn: <b>{convertLangCode(studyLang)}</b>
-        </div>
-      </Dropdown>
       <Dropdown content={baseDropdownContent}>
         <div className={selectLanguageStyles}>
           Language you know: <b>{convertLangCode(baseLang)}</b>
+        </div>
+      </Dropdown>
+      <Dropdown content={studyDropdownContent}>
+        <div className={selectLanguageStyles}>
+          Language you learn: <b>{convertLangCode(studyLang)}</b>
         </div>
       </Dropdown>
     </div>
