@@ -3,7 +3,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 export const wrapperStyles = style({
   margin: "0 auto",
-  marginTop: 150,
+  marginTop: 100,
 });
 
 export const questionStyles = style({

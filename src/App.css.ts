@@ -4,5 +4,5 @@ export const wrapperStyles = style({
   maxWidth: "450px",
   width: "90%",
   margin: "0 auto",
-  marginTop: "220px",
+  marginTop: 180,
 });
